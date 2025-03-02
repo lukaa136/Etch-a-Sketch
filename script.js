@@ -1,4 +1,5 @@
 const container = document.querySelector(".container");
+const html = document.querySelector("html");
 
 for (let i = 0; i < 256; i++) {
   const div = document.createElement("div");
@@ -6,9 +7,20 @@ for (let i = 0; i < 256; i++) {
   div.classList.add("hoverEffect");
 }
 
+function turnBGBLACK(event) {
+  event.target.style.backgroundColor = "black";
+}
+
 const hoverEff = document.querySelectorAll(".hoverEffect");
-hoverEff.forEach((div) => {
-  div.addEventListener("mouseover", () => {
-    div.style.backgroundColor = "black";
+
+html.addEventListener("mousedown", () => {
+  hoverEff.forEach((div) => {
+    div.addEventListener("mouseover", turnBGBLACK);
+  });
+});
+
+html.addEventListener("mouseup", () => {
+  hoverEff.forEach((div) => {
+    div.removeEventListener("mouseover", turnBGBLACK);
   });
 });
